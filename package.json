@@ -1,5 +1,5 @@
 {
-  "name": "vite-plugin-solidyaml",
+  "name": "@opensource/vite-plugin-solidyaml",
   "module": "index.ts",
   "type": "module",
   "private": false,
