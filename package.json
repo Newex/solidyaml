@@ -4,6 +4,7 @@
   "type": "module",
   "private": false,
   "devDependencies": {
+    "@types/web": "^0.0.114",
     "bun-types": "latest"
   },
   "peerDependencies": {
