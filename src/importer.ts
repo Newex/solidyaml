@@ -1,5 +1,4 @@
-
-import type { PluginContext, ResolveIdResult, LoadResult } from "rollup";
+import type { PluginContext, LoadResult } from "rollup";
 import fs from "fs";
 import util from "util";
 import { parse, parseAllDocuments } from "yaml";
