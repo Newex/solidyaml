@@ -1,2 +1,7 @@
 ---
 hello: World
+another: String
+---
+document: |
+  some long ass string
+  with new lines
