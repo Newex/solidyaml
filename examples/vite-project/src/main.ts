@@ -2,7 +2,7 @@ import './style.css'
 import typescriptLogo from './typescript.svg'
 import viteLogo from '/vite.svg'
 import { setupCounter } from './counter.ts'
-import { greetings } from "@opensource/vite-plugin-solidyaml";
+// import yaml from "./example.yaml";
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div>
@@ -19,10 +19,12 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <p class="read-the-docs">
       Click on the Vite and TypeScript logos to learn more
     </p>
-      <p>
-      ${greetings}
-      </p>
   </div>
 `
+const test = () => {
+  console.log("OK");
+}
+
+test();
 
 setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)

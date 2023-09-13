@@ -1,8 +1,8 @@
 import type { Plugin } from "rollup";
-import { transformer } from "./transformer";
+import { transformer } from "./transformer.js";
 
 
-export default function myPlugin(): Plugin {
+export default function solidYaml(): Plugin {
 
   return {
     name: 'vite-plugin-solidYaml',
