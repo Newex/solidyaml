@@ -5,8 +5,12 @@
       "name": "root"
     },
     {
+      "path": "./examples/svelte-project",
+      "name": "svelte-project"
+    },
+    {
       "path": "./examples/vite-project",
-      "name": "example-vite-project"
+      "name": "vite-project"
     },
     {
       "path": "./src",
