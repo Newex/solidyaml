@@ -3,7 +3,7 @@ import { it } from "vitest";
 
 it("should", async () => {
   // arrange. The path is relative to the workspace root folder.
-  const yamlPath = "tests/test.yaml";
+  const yamlPath = "tests/single.yaml";
   const that: any = { }
 
   // act
