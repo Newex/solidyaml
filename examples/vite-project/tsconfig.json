@@ -7,7 +7,7 @@
     "skipLibCheck": true,
 
     /* Bundler mode */
-    "moduleResolution": "bundler",
+    "moduleResolution": "Bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -20,8 +20,9 @@
     "noFallthroughCasesInSwitch": true,
 
     "types": [
-      "@opensource/vite-plugin-solidyaml/modules"
+      "./src/modules.d.ts"
     ]
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
 }
