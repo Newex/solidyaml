@@ -2,10 +2,11 @@ import type { PluginContext, LoadResult } from "rollup";
 import fs from "fs";
 import util from "util";
 import { parse, parseAllDocuments } from "yaml";
+import { Options } from "./index.js";
 
 const readFile = (filename: string) => util.promisify(fs.readFile)(filename, 'utf-8');
 
-export const loader = async function loader(this: PluginContext, id: string): Promise<LoadResult> {
+export const loader = (options?: Options) => async function loader(this: PluginContext, id: string): Promise<LoadResult> {
   if (id.endsWith(".yml") || id.endsWith(".yaml")) {
     try {
       const content = await readFile(id);

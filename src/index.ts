@@ -1,8 +1,11 @@
 import type { Plugin } from "rollup";
 import { loader } from "./importer.js";
 
+export interface Options {
+  outputDtsToFolder?: string
+}
 
-export default function solidYaml(): Plugin {
+export default function solidYaml(options?: Options): Plugin {
   return {
     name: 'vite-plugin-solidYaml',
 
@@ -12,7 +15,7 @@ export default function solidYaml(): Plugin {
       }
     },
 
-    load: loader
+    load: loader(options)
     // transform: transformer
    }
 }
