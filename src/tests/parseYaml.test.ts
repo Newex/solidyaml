@@ -1,5 +1,5 @@
 import { transformer } from "../transformer";
-import { it } from "bun:test";
+import { it } from "vitest";
 
 it("should", async () => {
   // arrange. The path is relative to the workspace root folder.

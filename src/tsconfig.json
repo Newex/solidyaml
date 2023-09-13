@@ -15,9 +15,8 @@
     "forceConsistentCasingInFileNames": true,
     "allowJs": true,
     "types": [
-      "bun-types",
       "web",
-      "node",
+      "node"
     ],
     "outDir": "dist",
     "noImplicitAny": true,
