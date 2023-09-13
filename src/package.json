@@ -7,6 +7,7 @@
     "@types/node": "^20.6.0",
     "@types/web": "^0.0.114",
     "rollup": "^3.29.1",
+    "vite": "^4.4.9",
     "vitest": "^0.34.4"
   },
   "peerDependencies": {
