@@ -16,6 +16,7 @@
   "dependencies": {
     "magic-string": "^0.30.3",
     "tosource": "^2.0.0-alpha.3",
+    "ts-morph": "^19.0.0",
     "yaml": "^2.3.2"
   },
   "types": "dist/index.d.ts"
