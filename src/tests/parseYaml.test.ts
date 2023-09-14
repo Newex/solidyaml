@@ -7,7 +7,9 @@ it("should", async () => {
   const that: any = { }
 
   // act
-  const result = await loader.call(that, yamlPath);
+  const result = await loader({
+    enableDts: true,
+  }).call(that, yamlPath);
 
   // assert
   console.log(result);

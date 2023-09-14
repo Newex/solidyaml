@@ -2,7 +2,9 @@ import type { Plugin } from "rollup";
 import { loader } from "./importer.js";
 
 export interface Options {
-  outputDtsToFolder?: string
+  outputDtsToDir?: string,
+  enableDts?: boolean,
+  sameAsYamlDir?: boolean
 }
 
 export default function solidYaml(options?: Options): Plugin {

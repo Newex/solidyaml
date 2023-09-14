@@ -3,6 +3,7 @@ import fs from "fs";
 import util from "util";
 import { parse, parseAllDocuments } from "yaml";
 import { Options } from "./index.js";
+import { generator } from "./dts_gen.js";
 
 const readFile = (filename: string) => util.promisify(fs.readFile)(filename, 'utf-8');
 
@@ -10,7 +11,14 @@ export const loader = (options?: Options) => async function loader(this: PluginC
   if (id.endsWith(".yml") || id.endsWith(".yaml")) {
     try {
       const content = await readFile(id);
-      return sourceGen(content);
+      const code = sourceGen(content);
+
+      if (options?.enableDts) {
+        // Output DTS
+        await generator(code, id, options);
+      }
+
+      return code;
     } catch (error) {
 
     }
