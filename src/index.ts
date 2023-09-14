@@ -7,7 +7,14 @@ export interface Options {
   sameAsYamlDir?: boolean
 }
 
+const defaultOptions: Options = {
+  enableDts: false,
+  sameAsYamlDir: true
+}
+
 export default function solidYaml(options?: Options): Plugin {
+  options = Object.assign({}, defaultOptions, options);
+
   return {
     name: 'vite-plugin-solidYaml',
 

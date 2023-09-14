@@ -9,6 +9,7 @@ it("should", async () => {
   // act
   const result = await loader({
     enableDts: true,
+    sameAsYamlDir: true
   }).call(that, yamlPath);
 
   // assert

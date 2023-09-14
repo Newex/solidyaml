@@ -12,13 +12,12 @@ export const generator = async (code: string, id: string, options?: Options) => 
   let output = "";
   if (same) {
     // Same directory as the yaml file
-    output = path.dirname(id);
+    output = path.join(__dirname, path.dirname(id));
   } else {
     // To the specified (or fallback) directory
     output = path.join(__dirname, folder ?? ".");
   }
 
-  // const extension = path.extname(id);
   const outputFilePath = path.resolve(output, filename + ".d.ts");
   await deleteFileIfExists(outputFilePath);
 
