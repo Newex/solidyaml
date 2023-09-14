@@ -1,5 +1,6 @@
 {
   "name": "@opensource/solidyaml",
+  "description": "Yaml file importer",
   "main": "dist/index.js",
   "type": "module",
   "private": false,
@@ -10,6 +11,7 @@
     "@types/node": "^20.6.0",
     "@types/web": "^0.0.114",
     "rollup": "^3.29.1",
+    "typescript": "^5.2.2",
     "vite": "^4.4.9",
     "vitest": "^0.34.4"
   },
@@ -26,5 +28,8 @@
     "ts-morph": "^19.0.0",
     "yaml": "^2.3.2"
   },
-  "types": "dist/index.d.ts"
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  }
 }
