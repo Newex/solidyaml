@@ -44,7 +44,7 @@ const objectPropSourceGen = (obj: Object): string => {
     let propName: string = prop;
     if (!jsNameRegex.test(prop)) {
       // replace illegal characters with _underscore_
-      propName = prop.replaceAll(/[^_$a-zA-Z\xA0-\uFFFF0-9]/, "_");
+      propName = prop.replaceAll(/[^_$a-zA-Z\xA0-\uFFFF0-9]/g, "_");
     } 
 
     // keyword
