@@ -1,5 +1,7 @@
 import { parse, parseAllDocuments } from "yaml";
 
+const jsNameRegex = /^[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*$/;
+
 export const sourceGen = (yaml: string): string => {
   let obj = null;
   let source: string = "";
@@ -38,11 +40,19 @@ const objectPropSourceGen = (obj: Object): string => {
   let prop: keyof typeof obj;
   for (prop in obj) {
     let value = obj[prop];
-    if (jsKeywords.find(k => k === prop)) {
+
+    let propName: string = prop;
+    if (!jsNameRegex.test(prop)) {
+      // replace illegal characters with _underscore_
+      propName = prop.replace(/[^_$a-zA-Z\xA0-\uFFFF0-9]/, "_");
+    } 
+
+    // keyword
+    if (jsKeywords.find(k => k === propName)) {
       // Add $ to the name to escape keyword
-      source += `export const $${prop} = ${JSON.stringify(value)}; `;
+      source += `export const $${propName} = ${JSON.stringify(value)}; `;
     } else {
-      source += `export const ${prop} = ${JSON.stringify(value)}; `;
+      source += `export const ${propName} = ${JSON.stringify(value)}; `;
     }
   }
 
