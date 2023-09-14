@@ -1,8 +1,11 @@
 {
-  "name": "@opensource/vite-plugin-solidyaml",
+  "name": "@opensource/solidyaml",
   "main": "dist/index.js",
   "type": "module",
   "private": false,
+  "bin": {
+    "solidyaml": "dist/dts_gen.js"
+  },
   "devDependencies": {
     "@types/node": "^20.6.0",
     "@types/web": "^0.0.114",
@@ -14,8 +17,13 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@types/figlet": "^1.5.6",
+    "@types/minimist": "^1.2.2",
+    "figlet": "^1.6.0",
     "magic-string": "^0.30.3",
+    "minimist": "^1.2.8",
     "tosource": "^2.0.0-alpha.3",
+    "ts-morph": "^19.0.0",
     "yaml": "^2.3.2"
   },
   "types": "dist/index.d.ts"
