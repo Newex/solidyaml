@@ -16,9 +16,19 @@ const argv = min(process.argv.slice(2))
 
 const yamlFileList = argv._;
 const outputPath = argv.o;
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const __dirname = process.cwd();
 
 const run = async () => {
+  // Handle input
+  if (argv.i) {
+    console.log("Current working directory: " + __dirname);
+    return;
+  }
+
+  await loopFiles();
+}
+
+const loopFiles = async () => {
   for (const file of yamlFileList) {
     try {
       // Get file
