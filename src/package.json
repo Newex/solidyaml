@@ -4,7 +4,7 @@
   "type": "module",
   "private": false,
   "bin": {
-    "solidyaml": "dts_gen.ts"
+    "solidyaml": "dist/dts_gen.js"
   },
   "devDependencies": {
     "@types/node": "^20.6.0",
