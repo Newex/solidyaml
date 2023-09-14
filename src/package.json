@@ -1,6 +1,7 @@
 {
   "name": "@opensource/solidyaml",
   "description": "Yaml file importer",
+  "version": "0.0.1",
   "main": "dist/index.js",
   "type": "module",
   "private": false,
