@@ -1,32 +1,22 @@
 import { Project } from "ts-morph";
 import path from "path";
-import { Options } from "./index.js";
 import fs from "fs";
 import util from "util";
+import { PluginContext } from "rollup";
+import { Options } from "./index.js";
 
 
-export const generator = async (code: string, id: string, options?: Options) => {
+export const generator = async function(this: PluginContext, code: string, id: string, options?: Options) {
   const filename = path.basename(id);
-  const { outputDtsToDir: folder, sameAsYamlDir: same } = options ?? { };
 
   let output = "";
-  if (same) {
-    // Same directory as the yaml file
-    output = path.join(__dirname, path.dirname(id));
-  } else {
-    // To the specified (or fallback) directory
-    output = path.join(__dirname, folder ?? ".");
-  }
-
-  const outputFilePath = path.resolve(output, filename + ".d.ts");
-  await deleteFileIfExists(outputFilePath);
 
   const project = new Project({
     compilerOptions: {
       outDir: output,
       declaration: true,
-      noEmit: false,
-      noEmitOnError: false,
+      noEmit: true,
+      noEmitOnError: true,
     }
   });
 
@@ -35,10 +25,15 @@ export const generator = async (code: string, id: string, options?: Options) => 
   try {
     let moduleSrc = "declare module '*" + filename + "' {\n" + code + "\n}";
     project.createSourceFile(yamlTs, moduleSrc);
-    const single = project.getSourceFileOrThrow(yamlTs);
-    await single.emit({ emitOnlyDtsFiles: true });
+    const result = project.emitToMemory({ emitOnlyDtsFiles: true });
+    for (const file of result.getFiles()) {
+      this.info("====== Start: " + filename + ".d.ts ======");
+      this.info(file.text);
+      this.info("====== End: " + filename + ".d.ts ======\n");
+    }
+
   } catch (error) {
-    console.error(error)
+    this.error("Could not create typescript declarations for " + filename + "\n" + error);
   }
 }
 
