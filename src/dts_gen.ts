@@ -1,22 +1,60 @@
-import { Project } from "ts-morph";
-import path from "path";
+#!/usr/bin/env node
+
+import figlet from "figlet";
 import fs from "fs";
+import min from "minimist";
+import path from "path";
+import { Project } from "ts-morph";
 import util from "util";
-import { PluginContext } from "rollup";
-import { Options } from "./index.js";
+import { fileURLToPath } from "url";
+import { sourceGen } from "./yaml_parser.js";
 
 
-export const generator = async function(this: PluginContext, code: string, id: string, options?: Options) {
-  const filename = path.basename(id);
+const readFile = (filename: string) => util.promisify(fs.readFile)(filename, 'utf-8');
+console.log(figlet.textSync("solid Yaml"));
+const argv = min(process.argv.slice(2))
 
-  let output = "";
+const yamlFileList = argv._;
+const outputPath = argv.o;
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+const run = async () => {
+  for (const file of yamlFileList) {
+    try {
+      // Get file
+      const filepath = path.resolve(__dirname, file);
+      const extension = path.extname(filepath);
+      if (!(extension.endsWith(".yml") || extension.endsWith(".yaml"))) {
+        // skip non-yaml
+        continue;
+      }
+
+      const content = await readFile(filepath);
+
+      // Convert to JSON
+      const code = sourceGen(content);
+
+      // Create typedefinitions
+      await generator(code, filepath);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}
+
+export const generator = async function(code: string, file: string) {
+
+  const filename = path.basename(file);
+  const outDir = path.resolve(__dirname, outputPath ?? ".");
+
+  console.log(file);
+  await deleteFileIfExists(file + ".d.ts");
 
   const project = new Project({
     compilerOptions: {
-      outDir: output,
+      outDir: outDir,
       declaration: true,
-      noEmit: true,
-      noEmitOnError: true,
+      noEmit: false,
     }
   });
 
@@ -25,15 +63,10 @@ export const generator = async function(this: PluginContext, code: string, id: s
   try {
     let moduleSrc = "declare module '*" + filename + "' {\n" + code + "\n}";
     project.createSourceFile(yamlTs, moduleSrc);
-    const result = project.emitToMemory({ emitOnlyDtsFiles: true });
-    for (const file of result.getFiles()) {
-      this.info("====== Start: " + filename + ".d.ts ======");
-      this.info(file.text);
-      this.info("====== End: " + filename + ".d.ts ======\n");
-    }
-
+    project.emitSync({ emitOnlyDtsFiles: true });
+    console.log("Created typedefinition " + filename + ".d.ts");
   } catch (error) {
-    this.error("Could not create typescript declarations for " + filename + "\n" + error);
+    console.error(error);
   }
 }
 
@@ -45,3 +78,5 @@ const deleteFileIfExists = async (filePath: string) => {
     // Does not exists? yay!
   }
 }
+
+run();
