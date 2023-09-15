@@ -33,5 +33,9 @@
   "scripts": {
     "build": "tsc",
     "test": "vitest"
-  }
+  },
+  "repository": {
+    "url": "https://github.com/Newex/solidyaml.git"
+  },
+  "license": "MIT"
 }
