@@ -183,3 +183,12 @@ multi: pass
 # Second document
 other: document
 ```
+
+A single yaml document can start with 3 dashes:
+
+```yaml
+---
+# This file start with 3 dashes and does not contain any other documents.
+# So this file is a single document yaml
+example: file
+```
