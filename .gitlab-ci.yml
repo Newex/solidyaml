@@ -3,6 +3,8 @@ image: node:latest
 workflow:
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - changes:
+        - src/package.json
 
 stages:
   - test
