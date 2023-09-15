@@ -94,6 +94,34 @@ console.log(yaml.text);
 
 ```
 
+**Note**  
+If the yaml file contains invalid javascript characters for naming variables, the characters will be converted to underscore `_`.  
+If the yaml file contains javascript keywords for naming variables or properties, they will be prefixed with dollar sign `$`.
+
+Example, given the single document yaml file:  
+
+```yaml
+# invalid.yaml
+new: js-keyword
+name-with-dashes: invalid variable name.
+property-name: invalid variable name but this is allowed for an object property name.
+```
+
+```typescript
+import yaml, { $new, name_with_dashes } from "invalid.yaml";
+
+// Access through property is OK. NOT renamed.
+console.log(yaml.new);
+console.log(yaml["name-with-dashes"]);
+
+// Access through variable -> renamed keyword with prefixed
+console.log($new);
+
+// variable with illegal chars --> replaced chars with underscore
+console.log(name_with_dashes);
+```
+
+
 ## Multidocument yaml
 You can import like this from a multidocument yaml file:
 
