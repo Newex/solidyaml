@@ -123,8 +123,18 @@ console.log(name_with_dashes);
 
 
 ## Multidocument yaml
-You can import like this from a multidocument yaml file:
+Given the yaml file:
+```yaml
+# File: multi.yaml
+# First document
+multi: pass
+---
+# ^-- separator must have 3 dashes
+# Second document
+other: document
+```
 
+You can import the yaml like so:
 
 ```typescript
 import yaml from "$lib/assets/multi.yaml";
