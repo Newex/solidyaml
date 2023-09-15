@@ -4,7 +4,7 @@ import { loader } from "./importer.js";
 export default function solidYaml(): Plugin {
   return {
     name: 'vite-plugin-solidYaml',
-    version: "0.0.3",
+    version: "0.0.4",
 
     resolveId: async function (source, importer, options) {
       if (source.endsWith(".yml") || source.endsWith(".yaml")) {
