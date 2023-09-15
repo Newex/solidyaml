@@ -155,7 +155,7 @@ $ npx solidyaml [yaml-file] -o /output/directory
 ```
 
 If you provide the argument `-o /path/to/output/folder` the generated `.d.ts` file will be placed in that directory.  
-If no argument to `-o` is provided, the file will be created in the same directory.
+If no argument to `-o` is provided, the file will be created in the same directory as the yaml file.
 
 The output overwrites any previous file with the same name.  
 The output is named using the following rule: `[yaml-filename].d.ts` e.g. `my.yaml.d.ts`
