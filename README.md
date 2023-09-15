@@ -136,11 +136,27 @@ console.log(yaml[0].multi);
 console.log(yaml[1].other);
 ```
 
+# CLI
+
+You can use the CLI if you have installed the `solidyaml` package.
+
+```bash
+$ npx solidyaml [yaml-file] -o /output/directory
+```
+
+If you provide the argument `-o /path/to/output/folder` the generated `.d.ts` file will be placed in that directory.  
+If no argument to `-o` is provided, the file will be created in the same directory.
+
+The output overwrites any previous file with the same name.  
+The output is named using the following rule: `[yaml-filename].d.ts` e.g. `my.yaml.d.ts`
 
 
 # How does it work?
 The plugin looks for an import statement that references an item which ends in either `.yml` or `.yaml`.  
 It then adds code to the `Vite` pipeline that resolves the import that converts the yaml to a javascrip object (which is converted from the yaml file).
+
+Both the CLI and the `Vite` plugin use the same converter.  
+The CLI uses the generated code in memory and creates type definitions using `ts-morph` package.
 
 
 # What is a single document YAML?
