@@ -33,8 +33,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "test": "vitest",
-    "publish": "tsc && npm publish"
+    "test": "vitest"
   },
   "repository": {
     "url": "https://github.com/Newex/solidyaml.git"
