@@ -1,10 +1,11 @@
 {
-  "name": "@opensource/solidyaml",
+  "name": "@newex/solidyaml",
   "description": "Yaml file importer",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "dist/index.js",
   "type": "module",
   "private": false,
+  "readme": "../README.md",
   "bin": {
     "solidyaml": "dist/dts_gen.js"
   },
@@ -37,5 +38,8 @@
   "repository": {
     "url": "https://github.com/Newex/solidyaml.git"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
 }
