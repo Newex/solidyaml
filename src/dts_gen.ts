@@ -6,7 +6,6 @@ import min from "minimist";
 import path from "path";
 import { Project } from "ts-morph";
 import util from "util";
-import { fileURLToPath } from "url";
 import { sourceGen } from "./yaml_parser.js";
 
 
@@ -23,6 +22,17 @@ const run = async () => {
   if (argv.i) {
     console.log("Current working directory: " + __dirname);
     return;
+  }
+
+  if (argv.h || yamlFileList.length == 0) {
+    // Display help
+    console.log("Usage: npx solidyaml [file] -o /output/dir");
+    console.log("[file] is the yaml file input");
+    console.log("");
+    console.log("Arguments:");
+    console.log("   -h        help message.");
+    console.log("   -i        info show current working directory");
+    console.log("   -o        optional path to output directory. If not given the output will be in the same directory as the input file.");
   }
 
   await loopFiles();
