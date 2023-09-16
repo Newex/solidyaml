@@ -1,30 +1,12 @@
 # SolidYaml
 
 ## What is it?
-This is a `Vite` plugin that enables to include yaml files in the source code.  
+This is a `Vite` plugin that enables you to include yaml files in the source code.  
 The package includes a CLI executable that creates typescript definition files for a given yaml file.  
-This definition file conforms to the solidyaml convertion code.
-
-## How to install
-Run the following:
-
-```console
-$ npm install -D @opensource/solidyaml
-```
-
-Add the plugin into the `Vite` config:
-
-```typescript
-// vite.config.ts
-import solidYaml from "@opensource/solidyaml";
-
-export default defineConfig({
-  plugins: [solidYaml()]
-})
-```
+This definition file only conforms to the way that solidyaml parses yaml files.
 
 ## How to use
-You can now import yaml files into your code, example using svelte:
+Example using svelte:
 
 Given a single document yaml file:
 
@@ -46,6 +28,25 @@ In a svelte component:
 
 <!-- Prints out: "World!" -->
 console.log(myAsset.hello);
+```
+
+
+## How to install
+Run the following:
+
+```console
+$ npm install -D @newex/solidyaml
+```
+
+Add the plugin into the `Vite` config:
+
+```typescript
+// vite.config.ts
+import solidYaml from "@newex/solidyaml";
+
+export default defineConfig({
+  plugins: [solidYaml()]
+})
 ```
 
 ## Add intellisense and remove error
