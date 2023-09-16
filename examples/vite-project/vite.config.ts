@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite'
-import solidYaml from "@opensource/solidyaml"
+import solidYaml from "@newex/solidyaml";
 
 export default defineConfig({
   plugins: [solidYaml()]

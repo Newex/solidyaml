@@ -9,8 +9,8 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@newex/solidyaml": "^0.0.6",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
-  },
-  "dependencies": {}
+  }
 }
