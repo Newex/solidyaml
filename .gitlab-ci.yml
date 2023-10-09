@@ -17,6 +17,8 @@ testing:
 
 deploy:
   stage: deploy
+  dependencies:
+    - "testing"
   script:
     # Must get packages from npmjs.org using standard CA
     - cd src
