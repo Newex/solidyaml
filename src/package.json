@@ -1,7 +1,7 @@
 {
   "name": "@newex/solidyaml",
   "description": "Plugin for vite for importing YAML files",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "main": "dist/index.js",
   "type": "module",
   "private": false,
